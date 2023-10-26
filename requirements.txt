@@ -1,0 +1,11 @@
+# pip install -r requirements.txt
+
+pandas==2.0.3
+numpy==1.25.1
+nltk==3.8.1
+perfplot==0.10.2
+matplotlib==3.7.2
+
+# flask==3.0.0
+fastapi==0.104.0
+uvicron==0.23.2 # for fastapi
