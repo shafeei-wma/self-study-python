@@ -62,3 +62,12 @@ filter = df["Text"].str.strip() != ""
 df = df[filter]
 df = df.reset_index(drop=True)
 df.to_csv('out_pp_final.csv', index=False)
+
+# more example of numpy vectorization*********************************************************************************************************
+# create a numpy array
+x = np.array([1, 2, 3, 4, 5])
+
+# subtract 2 from each element and then multiply the result by 7
+result = (x - 2) * 7
+
+print(result)  # It outputs: array([-7,  0,  7, 14, 21])
