@@ -13,10 +13,12 @@ pydantic-settings
 
 sqlalchemy
 databases
-tortoise-orm # for db
+tortoise-orm # for db connection
 aerich # for db migration
 
 # flask==3.0.0
 fastapi==0.104.0
-uvicron==0.23.2 # for fastapi
+uvicorn==0.23.2 # for fastapi
+
+asyncpg
 

@@ -1,14 +1,21 @@
 from fastapi import FastAPI
 from tortoise import Tortoise
 from tortoise.contrib.fastapi import register_tortoise
+import os
 
 from settings import settings
 
 Tortoise.init_models(["models"], "models")
 
+PYTHON_ENV = os.getenv("PYTHON_ENV")
+if PYTHON_ENV == "test":
+    DB_HOST = "db"
+else:
+    DB_HOST = settings.DB_HOST
+
 TORTOISE_ORM = {
     "connections": {
-        "default": f"postgres://{settings.DB_USER}:{settings.DB_PASS}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}",
+        "default": f"postgres://{settings.DB_USER}:{settings.DB_PASS}@{DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}",
     },
     "apps": {
         "models": {
@@ -35,6 +42,9 @@ async def manual_query(query: str):
     # Use execute_query() to run your raw SQL
     result = await conn.execute_query(query)
     print(result)
+    
+    # Disconnect when you're finished
+    await Tortoise.close_connections()
     return result
 
 
